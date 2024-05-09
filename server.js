@@ -10,13 +10,15 @@ app.get('/users', (req, res) => {
     res.json([
         { name: 'John', email: 'example', id: 1 },
         { name: 'Jane', email: 'example', id: 2 },
-        { name: 'Jim', email: 'example', id: 3 }
+        { name: 'Jim', email: 'example', id: 3 },
+        { name: 'Jam', email: 'example', id: 4 }
+
     ])
 })
 
 app.get('/users/:id', (req, res) => {
 
-    fetch('http://localhost:3000/users/').then(
+    fetch(`http://localhost:${port}/users/`).then(
         res => res.json()
     ).then(
         data => {
@@ -27,6 +29,9 @@ app.get('/users/:id', (req, res) => {
             }
 
             res.json(user)
+        }).catch(
+        err => {
+            res.status(500).send('An error occurred')
         }
     )
 
